@@ -1,5 +1,8 @@
 /* 1. ГЛОБАЛЬНЫЕ СТИЛИ */
 body {
+
+    border: 5px solid red !important;
+    
     background-color: #0a0a0a;
     font-family: "Onest", sans-serif;
     font-optical-sizing: auto;
