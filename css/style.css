@@ -509,7 +509,7 @@ main {
 
 /* 8. АДАПТИВ ДЛЯ МОБИЛЬНЫХ УСТРОЙСТВ */
 section {
-    scroll-margin-top: 100px; 
+    scroll-margin-top: 50px; 
 }
 
 @media (max-width: 900px) {
