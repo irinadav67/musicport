@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MUSICPORT - Слушай мировые тренды онлайн: поиск исполнителей, чарты и плеер</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" href="assets/icons/logo.png" type="image/png">
+    <meta name="theme-color" content="#ff6600">
+    <meta name="description" content="MusicPort — удобный музыкальный портал для поиска артистов, просмотра актуальных мировых чартов и прослушивания треков онлайн.">
+    <meta name="keywords" content="музыка, чарты, поиск музыки, Deezer, плейлисты, прослушивание треков">
+    <meta property="og:title" content="MusicPort — слушай музыку онлайн">
+    <meta property="og:description" content="Твой пульт от мирового эфира: поиск, чарты и любимые жанры.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://irinadav67.github.io/musicport/">
+    <meta property="og:image" content="assets/images/og-image.jpg">
+
+    <!-- Сброс стилей -->
+    <link rel="stylesheet" href="css/reset.css">
+    <!-- Наши стили -->
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Шрифт -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Onest:wght@100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Навигация (Шапка) -->
+    <header class="header">
+        <div class="logo">
+            <a class="header_logo" href="#about">
+                <img src="assets/icons/logo.png" alt="Логотип">
+                <h2 class="header_title"><span class="orange">Music</span><span>Port</span></h2>
+            </a>
+        </div>
+        <nav class="header_nav">
+            <ul class="header_menu">
+                <li class="header_item"><a class="header_item-link" href="#hero">Главная</a></li>
+                <li class="header_item"><a class="header_item-link" href="#charts">Чарты</a></li>
+                <li class="header_item"><a class="header_item-link" href="#genres">Жанры</a></li>
+                <li class="header_item"><a class="header_item-link" href="#about">О платформе</a></li> 
+            </ul>
+        </nav>
+        <div class="header-actions">
+            <!-- Сюда пишем текст и JS ищет артиста или песню -->
+            <input type="text" placeholder="Найти..." class="search-input">
+            <button id="search-btn">🔍</button>
+            <button id="clear-btn"><strong>X</strong></button>
+        </div>
+    </header>
+
+<main>
+    <!-- ГЛАВНОЕ -->
+
+    <!-- плейлисты  -->
+    <section class="hero" id="hero">
+    
+        <div class="hero_welcome">
+            <h1>Твой пульт от мировых трендов</h1>
+            <p>
+                Не знаешь, что послушать прямо сейчас? Здесь ты можешь листать мировые чарты и исследовать жанры - от поп-музыки до клауд-рэпа. Кликай по карточкам, находи любимых исполнителей через поиск, открывай их лучшие песни и слушай в один клик.
+            </p>
+
+        </div>
+
+
+        <!-- Модальное окно -->
+        <div id="music-player-container">
+            <h3>Сейчас играет:</h3>
+            <div id="embed-iframe-target"></div>
+        </div>
+   
+        <!-- Плеейлисты с жанрами и  под настроение -->
+        <div class="hero-playlists-flex">
+            <div id="playlist-container"></div>
+            <div class="mood-column">
+                <p class="mood-hint">
+                Не зацепило? Если тяжелый метал или спокойная классика сейчас не подходят, найди трек под свое личное настроение! Какая атмосфера окружает тебя в эту секунду? Доверься интуиции, выбирай карточку, которая точнее всего описывает твой день, и всего один клик - плеер поймает твою волну!
+                </p>
+                <div id="mood-container"></div>
+            </div>
+        </div>
+    </section>
+
+    
+
+    <!-- БЛОК: МИРОВЫЕ ЧАРТЫ -->
+    <section class="music-section" id="charts">
+        <h2 class="section_title">Мировые чарты</h2>
+        <!-- В этот контейнер JS генерирует карточки из чартов API -->
+        <div class="charts-container" id="charts-list">
+            <!-- текст заглушка -->
+            <div class="charts-placeholder" id="charts-loader"><p>Ищем, что сейчас слушают...</p></div>
+        </div>
+        <div class="charts-buttons-container">
+            <button id="load-more-btn" class="load-more-btn"><p>Показать еще</p></button>
+            <button id="reset-btn" class="load-more-btn">Сбросить</button>
+        </div>
+    </section>
+
+
+    <!-- БЛОК: ЖАНРЫ -->
+    <section class="music-section" id="genres">
+        <h2 class="section_title">Карта жанров</h2>
+        <p class="genres-hint"><strong>*</strong>Жми на карточку, чтобы открыть чарты этого жанра/исполнителя.</p>
+        <div class="genres_grid">
+            <div class="genre-card">
+                <h3>Pop</h3>
+                <p class="section_label">Слушаем:</p>
+                <!-- карточка артиста -->
+                <div class="artist-preview">
+                    <img src="assets/images/arianagrande.jpg" alt="jpg">
+                    <h4 class="artist-name">Ariana Grande</h4>
+                    <p class="artist-bio">
+                        <strong>Жанр: Pop / R&B</strong><br>
+
+                        Американская певица с вокальным диапазоном в четыре октавы, начавшая карьеру на телевидении и ставшая одной из главных хитмейкерш в мировой поп-музыке. Её треки строятся на стыке классических поп-структур, мягкого R&B и плотных трэп-битов. В своих песнях она часто поднимает личные темы: от переживания семейных драм до вопросов ментального здоровья, сочетая коммерческий звук с автобиографичными текстами.
+                    </p>
+                </div>
+
+            </div>
+            <div class="genre-card">
+                <h3>Rap / Hip-Hop</h3>
+                <p class="section_label">Слушаем:</p>
+                <!-- карточка артиста -->
+                <div class="artist-preview">
+                    <img src="assets/images/liluzivert.jpg" alt="jpg">
+                    <h4 class="artist-name">Lil Uzi Vert</h4>
+                    <p class="artist-bio">
+                        <strong>Жанр: Hip-Hop / Trap / Emo Rap</strong> <br>
+
+                        Американский рэпер, получивший массовую известность после релиза сингла «XO Tour Llif3». Стал одним из главных представителей новой школы хип-хопа, смешав элементы рок-культуры с трэп-музыкой. Его треки отличаются высокой скоростью подачи, использованием футуристических синтезаторов и меланхоличными текстами. Известен своими экспериментами со звуком, частой сменой творческих образов и эксцентричным поведением на сцене.
+                    </p>
+                </div>
+
+            </div>
+            <div class="genre-card">
+                <h3>Rock</h3>
+                <p class="section_label">Слушаем:</p>
+                <!-- карточка артиста -->
+                <div class="artist-preview">
+                    <img src="assets/images/linkinpark.jpg" alt="jpg">
+                    <h4 class="artist-name">Linkin Park</h4>
+                    <p class="artist-bio">
+                        <strong>Жанр: Alternative Rock / Nu-Metal</strong> <br>
+
+                        Группа, определившая развитие альтернативной рок-сцены начала 2000-х годов. Их дебютная пластинка «Hybrid Theory» разошлась миллионными тиражами благодаря контрастному звучанию: коллектив совместил тяжелые гитарные риффы, электронику, речитатив Майка Шиноды и эмоциональный вокал Честера Беннингтона. Песни группы посвящены темам внутренней борьбы и отчуждения. В 2024 году группа возобновила концертную деятельность с новой вокалисткой Эмили Армстронг.
+                    </p>
+                </div>
+
+            </div>
+            <div class="genre-card">
+                <h3>Cloud rap / Hyperpop</h3>
+                <p class="section_label">Слушаем:</p>
+                <!-- карточка артиста -->
+                <div class="artist-preview">
+                    <img src="assets/images/bladee.jpg" alt="jpg">
+                    <h4 class="artist-name">Bladee</h4>
+                    <p class="artist-bio">
+                       <strong> Жанр: Cloud Rap / Hyperpop / Drain</strong> <br>
+
+                        Шведский рэпер, продюсер и дизайнер (настоящее имя — Бенджамин Райхвальд), начавший карьеру в Стокгольме с увлечения панк-роком и граффити. В 2013 году он стал сооснователем музыкального коллектива Drain Gang, который сильно повлиял на развитие клауд-рэпа. Треки Bladee получили известность в андерграунде благодаря отстраненной подаче, эмоциональным текстам и новаторскому электронному звуку на стыке трэпа, эмо-рока и эмбиента.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- БЛОК: О ПЛАТФОРМЕ -->
+    <section class="music-section" id="about">
+        <h2 class="section_title">О платформе</h2>
+        <div class="about_content">
+            <p><strong>MusicPort</strong> -  интерактивный музыкальный портал, созданный для поиска исполнителей и мониторинга главных мировых трендов в режиме онлайн. Мы объединили удобную карту жанров, умную систему поиска и глобальные чарты на одной площадке, чтобы вы могли открывать для себя новую музыку без лишних преград. <br>
+            Благодаря интеграции с базой данных стримингового сервиса Deezer, сайт в реальном времени подгружает официальные мировые хит-парады и находит нужные треки по всей огромной библиотеке артистов. Встроенный плеер позволяет мгновенно запускать песни, изучать биографии музыкантов и переключаться между направлениями - от поп-хитов до глубокого андерграунда.</p>
+        </div>
+    </section>
+
+</main>
+
+    <!-- ПОДВАЛ -->
+    <footer id="footer">
+        <div class="footer">
+            <div class="footer_logo-wrapper">
+                <img src="assets/icons/logo.png" alt="Логотип">
+                <h2><span class="orange">Music</span><span>Port</span></h2>
+            </div>
+            
+            <p>© 2026 Все права защищены.</p>
+            <p>Связь с нами: 
+            <span id="email-link">irunella.dav@gmail.com</span></p>
+            
+            <a href="#hero" class="scroll-up_btn"><strong>↑ Наверх</strong></a>
+            
+            <form class="footer_contact" id="contactForm">
+                <input type="email" id="email" placeholder="Твой email" required>
+                <button type="submit">Отправить</button>
+            </form>
+        </div> 
+    </footer>
+
+    <script src="js/script.js">
+    </script>
+</body>
+</html>
+  
