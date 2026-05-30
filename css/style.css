@@ -528,11 +528,6 @@ section {
         padding: 15px 20px;
         text-align: center;
     }
-
-    /* Скрываем логотип и заголовок, оставляем только меню и поиск */
-    .header_logo, .header_title {
-        display: none !important;
-    }
     
     .header_menu {
         gap: 20px;
