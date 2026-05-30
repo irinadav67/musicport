@@ -134,7 +134,7 @@ main {
     align-items: center;
     font-size: 150%;
     padding: 0 15px;
-    margin: 40px 20px 60px 20px;
+    margin: 40px 20px 80px 20px; /* Увеличил нижний отступ до 80px */
 }
 
 .hero-playlists-flex {
@@ -459,6 +459,30 @@ main {
 
 .footer_contact {
     margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+    max-width: 400px;
+}
+
+.footer_contact input {
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid #444;
+    background: #262626;
+    color: white;
+}
+
+.footer_contact button {
+    padding: 20px; /* Кнопка Email теперь большая */
+    background-color: #ff6600;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 18px;
 }
 
 .modal-overlay {
@@ -503,36 +527,35 @@ section {
         text-align: center;
     }
 
-    .header_logo, 
-    .header_title {
-        display: none !important;
-    }
-
+    /* Логотип остается, но становится компактнее */
+    .header_logo img { height: 30px; }
+    
     .header_menu {
         gap: 20px;
         justify-content: center;
         width: 100%;
     }
 
-    .header_item-link {
-        font-size: 14px;
-    }
+    .header_item-link { font-size: 14px; }
 
     .header-actions {
         width: 100%;
         justify-content: center;
         gap: 10px;
     }
-
-    .search-input {
-        flex-grow: 1;
-        max-width: 280px;
-    }
     
     .hero_welcome {
         font-size: 120%;
         margin-bottom: 40px; 
     }
+
+    /* Чарты: 2 карточки в ряд на мобильном */
+    #charts-list {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+        padding: 0 10px;
+    }
+    .track-card { width: 100%; padding: 10px; }
 }
 
 @media (max-width: 650px) {
