@@ -552,7 +552,7 @@ section {
         display: grid;
         grid-template-columns: 175px 175px;
         gap: 10px;
-        padding: 0 10px;
+        padding: 0 0 20px 20px;
     }
     
     .track-card { 
