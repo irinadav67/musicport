@@ -548,10 +548,9 @@ section {
         margin-bottom: 40px; 
     }
 
-    /* Чарты: 2 равные карточки в ряд */
     #charts-list {
         display: grid;
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: 175px 175px;
         gap: 10px;
         padding: 0 10px;
     }
